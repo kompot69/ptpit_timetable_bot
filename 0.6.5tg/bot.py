@@ -39,7 +39,7 @@ dispatcher = updater.dispatcher
 
 # inline # 
 def inline_caps(update, context):
-    query = update.inline_query.query
+    query = update.inline_query.query.lower()
     if not query:
         return
     print(getDateTime("text")+" inline")
