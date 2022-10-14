@@ -32,6 +32,7 @@ weekDays={# дни недели
 
 ## # vk # #
 import vk_api
+from threading import Thread
 from vk_api.utils import get_random_id
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.keyboard import VkKeyboard
@@ -40,6 +41,7 @@ vk_session = vk_api.VkApi(token=os.environ.get("TOKEN"))
 api = vk_session.get_api()
 longpoll_owner_id = int(str(owner_id)[1:])
 longpoll = VkBotLongPoll(vk_session, longpoll_owner_id)
+context=None
 
 def worker(event):
     message = event.obj['message']
@@ -583,7 +585,7 @@ def getDateTime(text):
         return date
      
 # # vk # # 
-def sendMessage(chatid, text):
+def sendMessage(chatid, text, context):#context from tg)))
     if int(chatid) < 2000000000:
         keyboard=VkKeyboard()
         keyboard.add_button("Пары сегодня", color='primary' )
