@@ -46,7 +46,7 @@ if checkEnvFile == False:
     
 # start bot
 while True:
-    os.system("pypy3 bot.py")
+    os.system("python3 bot.py")
     dateNow=str((datetime.now()+timedelta(hours=5)).strftime("%d.%m.%y %H:%M:%S"))
     print(dateNow+" [BC] bot was closed, restart")
     
