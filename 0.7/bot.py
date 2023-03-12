@@ -654,7 +654,7 @@ def add_user(chatid, gr0up): #add_user(chatid, gr0up)
 def set_user(chatid):
     conn = sqlite3.connect('users.db', check_same_thread=False)
     cursor = conn.cursor()
-    cursor.execute("SELECT gr0up FROM users WHERE chatid=?", (chatid))
+    cursor.execute("SELECT gr0up FROM users WHERE chatid=?", (chatid,))
     user_data = cursor.fetchone()
     conn.close()
     return user_data
@@ -719,4 +719,3 @@ def activityTyping(chatid):
 updater.start_polling()
 # # end tg # #
 
-conn.close()
