@@ -171,10 +171,10 @@ def echo(update, context):
         os._exit(0)
         
     # выбор группы
-    set_user(chatid)
-    if set_user:
-        gr0up = set_user
-        print(f"(test) set group {gr0up}")
+    #set_user(chatid)
+    #if set_user:
+    gr0up = set_user(chatid)
+    print(f"(test) set group {gr0up}")
     else:
         text="Ваш ID не найден в боте. Установите группу:\nБот группа <имя группы>"
         return sendMessage(chatid, text, context)
