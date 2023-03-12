@@ -647,6 +647,7 @@ def getTimetableTeacher(dateneed, query):
 def add_user(chatid, gr0up): #add_user(chatid, gr0up)
     conn = sqlite3.connect('users.db', check_same_thread=False)
     cursor = conn.cursor()
+    print(type(cursor.execute('''EXISTS(SELECT id FROM users WHERE chatid = ?)''', (chatid,))))
     cursor.execute('''INSERT INTO users (chatid, gr0up) VALUES (?, ?)''', (chatid, gr0up))
     conn.commit()
     conn.close()
