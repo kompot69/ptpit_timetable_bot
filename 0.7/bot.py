@@ -175,9 +175,9 @@ def echo(update, context):
     #if set_user:
     gr0up = set_user(chatid)
     print(f"(test) set group {gr0up}")
-    #else:
-    #    text="Ваш ID не найден в боте. Установите группу:\nБот группа <имя группы>"
-    #    return sendMessage(chatid, text, context)
+    if gr0up == None:
+        text="Ваш ID не найден в боте. Установите группу:\nБот группа <имя группы>"
+        return sendMessage(chatid, text, context)
     """
     gr0up=int(chatid)
     if gr0up in chatIDs:
