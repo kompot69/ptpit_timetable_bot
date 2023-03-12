@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 from chatIDs import chatIDs
 from adminIDs import admins
 load_dotenv(".env")
-conn = sqlite3.connect('users.db', check_same_thread=False)
 
 times = {# расписание звонков
         1: "1⃣ 08:30-10:05",
@@ -646,12 +645,14 @@ def getTimetableTeacher(dateneed, query):
             return "Расписание на "+dateneed+"\nдля "+surname+f" {r['teacher_name'][0]}. {r['teacher_secondname'][0]}. не найдено"+checkNotice(datestrf)
 
 def add_user(chatid, gr0up): #add_user(chatid, gr0up)
+    conn = sqlite3.connect('users.db', check_same_thread=False)
     cursor = conn.cursor()
     cursor.execute('''INSERT INTO users (chatid, gr0up) VALUES (?, ?)''', (chatid, gr0up))
     conn.commit()
     conn.close()
 
 def set_user(chatid):
+    conn = sqlite3.connect('users.db', check_same_thread=False)
     cursor = conn.cursor()
     cursor.execute("SELECT gr0up FROM users WHERE chatid=?", (chatid))
     user_data = cursor.fetchone()
