@@ -168,7 +168,7 @@ def echo(update, context):
         if fromid in admins:
             text+=" для чата "+chatid
         sendMessage(chatid, text, context)
-        os._exit(0)
+        #os._exit(0)
         
     # выбор группы
     #set_user(chatid)
@@ -647,9 +647,15 @@ def getTimetableTeacher(dateneed, query):
             return "Расписание на "+dateneed+"\nдля "+surname+f" {r['teacher_name'][0]}. {r['teacher_secondname'][0]}. не найдено"+checkNotice(datestrf)
 
 def add_user(chatid, gr0up): #add_user(chatid, gr0up)
+    if set_user(chatid) != None:
+        conn = sqlite3.connect('users.db', check_same_thread=False)
+        cursor = conn.cursor()
+        cursor.execute('''UPDATE users SET gr0up=? WHERE chatid=?''', (gr0up, chatid))
+        conn.commit()
+        conn.close()
+        return 
     conn = sqlite3.connect('users.db', check_same_thread=False)
     cursor = conn.cursor()
-    print(type(cursor.execute('''EXISTS(SELECT id FROM users WHERE chatid = ?)''', (chatid,))))
     cursor.execute('''INSERT INTO users (chatid, gr0up) VALUES (?, ?)''', (chatid, gr0up))
     conn.commit()
     conn.close()
