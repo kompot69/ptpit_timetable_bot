@@ -178,6 +178,7 @@ def echo(update, context):
     if gr0up == None:
         text="Ваш ID не найден в боте. Установите группу:\nБот группа <имя группы>"
         return sendMessage(chatid, text, context)
+    gr0up = str(gr0up)
     """
     gr0up=int(chatid)
     if gr0up in chatIDs:
