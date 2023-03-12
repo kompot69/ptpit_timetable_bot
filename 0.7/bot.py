@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from chatIDs import chatIDs
 from adminIDs import admins
 load_dotenv(".env")
-conn = sqlite3.connect('users.db')
+conn = sqlite3.connect('users.db', check_same_thread=False)
 cursor = conn.cursor()
 
 times = {# расписание звонков
